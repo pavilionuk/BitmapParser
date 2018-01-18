@@ -27,6 +27,11 @@ void BitmapImage::setOffset(const int & offset)
 	m_offset = offset;
 }
 
+int BitmapImage::getOffset()
+{
+	return m_offset;
+}
+
 std::string BitmapImage::getID()
 {
 	return m_ID;
@@ -35,6 +40,16 @@ std::string BitmapImage::getID()
 int BitmapImage::getSizeOfBitmap()
 {
 	return m_sizeOfBitmap;
+}
+
+void BitmapImage::setBytes(const int & bytes)
+{
+	m_bytes = bytes;
+}
+
+int BitmapImage::getBytes()
+{
+	return m_bytes;
 }
 
 
