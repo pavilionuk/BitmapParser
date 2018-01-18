@@ -52,4 +52,9 @@ int BitmapImage::getBytes()
 	return m_bytes;
 }
 
+void BitmapImage::setWidth(const int & width)
+{
+
+}
+
 

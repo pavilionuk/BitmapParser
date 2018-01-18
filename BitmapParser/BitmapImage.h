@@ -20,6 +20,11 @@ public:
 	//DIB header
 	void setBytes(const int& bytes);
 	int getBytes();
+	void setWidth(const int& width);
+	void setHeight(const int& height);
+	int getWidth();
+	int getHeight();
+
 
 private:
 	//BMP header
@@ -29,5 +34,16 @@ private:
 
 	//DIB header
 	int m_bytes;
+	int m_width;
+	int m_height;
 };
 
+class BMPHeader
+{
+
+};
+
+class DIBHeader
+{
+
+};
