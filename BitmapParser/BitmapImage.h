@@ -37,13 +37,3 @@ private:
 	int m_width;
 	int m_height;
 };
-
-class BMPHeader
-{
-
-};
-
-class DIBHeader
-{
-
-};
