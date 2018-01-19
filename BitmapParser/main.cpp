@@ -3,7 +3,7 @@
 
 int main(int argc, _TCHAR* argv[])
 {
-	std::string filename("ur mum sells avon.bmp");
+	std::string filename("test.bmp");
 	BitmapParser* parser = new BitmapParser(filename);
 	
 	
