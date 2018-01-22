@@ -6,7 +6,7 @@ int main(int argc, _TCHAR* argv[])
 {
 	
 	std::string filename(R"(C:\Users\pavilion.sahota\Desktop\input\top.bmp)");
-	std::string filename2(R"(C:\Users\pavilion.sahota\Desktop\output\aaaaaaAAAAAAAAAAHHHH.bmp)");
+	std::string filename2("aaaaaaAAAAAAAAAAHHHH.bmp");
 	remove(filename2.c_str());
 	BitmapParser* parser = new BitmapParser(filename);
 	//BitmapParser* create = new BitmapParser(filename2);
