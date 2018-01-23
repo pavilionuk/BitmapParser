@@ -1,11 +1,15 @@
 #include "stdafx.h"
 #include "BitmapParser.h"
 #include <stdio.h>
+#include <iostream>
 
 int main(int argc, _TCHAR* argv[])
 {
 	typedef std::string str;
-	str filename(R"(C:\Users\pavilion.sahota\Desktop\input\top.bmp)");
+	str filename;
+	std::cout << "Please enter the filename (including file extention): ";
+	std::cin >> filename;
+	std::cout << std::endl;
 	str filename2("aaaaaaAAAAAAAAAAHHHH.bmp");
 	remove(filename2.c_str());
 	BitmapParser* parser = new BitmapParser(filename);
