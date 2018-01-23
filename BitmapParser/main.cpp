@@ -4,9 +4,9 @@
 
 int main(int argc, _TCHAR* argv[])
 {
-	
-	std::string filename(R"(C:\Users\pavilion.sahota\Desktop\input\top.bmp)");
-	std::string filename2("aaaaaaAAAAAAAAAAHHHH.bmp");
+	typedef std::string str;
+	str filename(R"(C:\Users\pavilion.sahota\Desktop\input\top.bmp)");
+	str filename2("aaaaaaAAAAAAAAAAHHHH.bmp");
 	remove(filename2.c_str());
 	BitmapParser* parser = new BitmapParser(filename);
 	//BitmapParser* create = new BitmapParser(filename2);
