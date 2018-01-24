@@ -11,7 +11,9 @@ public:
 
 	~BitmapParser();
 
-	void parse(const std::string& filename);
+	void parseHeader(const std::string& filename);
+	void parseDIB(const std::string& filename);
+	void parsePixelArray(const std::string& filename);
 	void create(const std::string& filename2);
 
 private:

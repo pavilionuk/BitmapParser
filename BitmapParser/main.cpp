@@ -5,15 +5,16 @@
 
 int main(int argc, _TCHAR* argv[])
 {
-	typedef std::string str;
-	str filename;
+
+	std::string path = R"(C:\Users\pavilion.sahota\Desktop\input\)";
+	std::string filename;
 	std::cout << "Please enter the filename (including file extention): ";
 	std::cin >> filename;
+	filename = path + filename;
 	std::cout << std::endl;
-	str filename2("aaaaaaAAAAAAAAAAHHHH.bmp");
+	std::string filename2(R"(C:\Users\pavilion.sahota\Desktop\output\output.bmp)");
 	remove(filename2.c_str());
 	BitmapParser* parser = new BitmapParser(filename);
-	//BitmapParser* create = new BitmapParser(filename2);
 	
 	
 	
