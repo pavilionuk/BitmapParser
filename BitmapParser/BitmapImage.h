@@ -47,14 +47,14 @@ public:
 
 
 	//Pixel array
-	void addPixel16(int& pixel);
+	void addPixel8(int& pixel);
 
 	void add2b(int& pa_b);
 	void add2g(int& pa_g);
 	void add2r(int& pa_r);
 	void setPadding(const int& padding);
 
-	std::vector<int> getPixel16();
+	std::vector<int> getPixel8();
 
 	std::vector<int> getB();
 	std::vector<int> getG();
@@ -81,7 +81,7 @@ private:
 	int m_icolours;
 	
 	//Pixel array
-	std::vector<int> m_pixel16;
+	std::vector<int> m_pixel8;
 
 	std::vector<int> m_PA_b;
 	std::vector<int> m_PA_g;

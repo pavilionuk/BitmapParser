@@ -152,9 +152,9 @@ int BitmapImage::getiColours()
 	return m_icolours;
 }
 
-void BitmapImage::addPixel16(int & pixel)
+void BitmapImage::addPixel8(int & pixel)
 {
-	m_pixel16.push_back(pixel);
+	m_pixel8.push_back(pixel);
 }
 
 void BitmapImage::add2b(int& pa_b)
@@ -177,9 +177,9 @@ void BitmapImage::setPadding(const int & padding)
 	m_padding = padding;
 }
 
-std::vector<int> BitmapImage::getPixel16()
+std::vector<int> BitmapImage::getPixel8()
 {
-	return m_pixel16;
+	return m_pixel8;
 }
 
 std::vector<int> BitmapImage::getB()
