@@ -102,6 +102,11 @@ void BitmapImage::setiColours(const int & icolours)
 	m_icolours = icolours;
 }
 
+void BitmapImage::addBlanks(int & blanks)
+{
+	m_blanks.push_back(blanks);
+}
+
 int BitmapImage::getWidth()
 {
 	return m_width;
@@ -152,9 +157,19 @@ int BitmapImage::getiColours()
 	return m_icolours;
 }
 
+std::vector<int> BitmapImage::getBlanks()
+{
+	return m_blanks;
+}
+
 void BitmapImage::addPixel8(int & pixel)
 {
 	m_pixel8.push_back(pixel);
+}
+
+void BitmapImage::addPixel4(int & pixel)
+{
+	m_pixel4.push_back(pixel);
 }
 
 void BitmapImage::add2b(int& pa_b)
@@ -172,6 +187,11 @@ void BitmapImage::add2r(int & pa_r)
 	m_PA_r.push_back(pa_r);
 }
 
+void BitmapImage::addAlpha(int & alpha)
+{
+	m_alpha.push_back(alpha);
+}
+
 void BitmapImage::setPadding(const int & padding)
 {
 	m_padding = padding;
@@ -180,6 +200,11 @@ void BitmapImage::setPadding(const int & padding)
 std::vector<int> BitmapImage::getPixel8()
 {
 	return m_pixel8;
+}
+
+std::vector<int> BitmapImage::getPixel4()
+{
+	return m_pixel4;
 }
 
 std::vector<int> BitmapImage::getB()
@@ -195,6 +220,11 @@ std::vector<int> BitmapImage::getG()
 std::vector<int> BitmapImage::getR()
 {
 	return m_PA_r;
+}
+
+std::vector<int> BitmapImage::getAlpha()
+{
+	return m_alpha;
 }
 
 int BitmapImage::getPadding()

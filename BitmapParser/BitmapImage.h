@@ -32,6 +32,7 @@ public:
 	void setResH(const int& resH);
 	void setColours(const int& colours);
 	void setiColours(const int& icolours);
+	void addBlanks(int& blanks);
 
 	int getBytes();
 	int getWidth();
@@ -44,17 +45,26 @@ public:
 	int getResH();
 	int getColours();
 	int getiColours();
+	std::vector<int> getBlanks();
+
 
 
 	//Pixel array
 	void addPixel8(int& pixel);
 
+	void addPixel4(int& pixel);
+
 	void add2b(int& pa_b);
 	void add2g(int& pa_g);
 	void add2r(int& pa_r);
+	void addAlpha(int& alpha);
 	void setPadding(const int& padding);
 
+	std::vector<int> getAlpha();
+
 	std::vector<int> getPixel8();
+
+	std::vector<int> getPixel4();
 
 	std::vector<int> getB();
 	std::vector<int> getG();
@@ -79,12 +89,16 @@ private:
 	int m_resH;
 	int m_colours;
 	int m_icolours;
+	std::vector<int> m_blanks;
 	
 	//Pixel array
 	std::vector<int> m_pixel8;
 
+	std::vector<int> m_pixel4;
+
 	std::vector<int> m_PA_b;
 	std::vector<int> m_PA_g;
 	std::vector<int> m_PA_r;
+	std::vector<int> m_alpha;
 	int m_padding;
 };
