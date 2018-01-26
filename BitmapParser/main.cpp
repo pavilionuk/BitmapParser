@@ -8,7 +8,7 @@ int main(int argc, _TCHAR* argv[])
 
 	std::string path = R"(C:\Users\pavilion.sahota\Desktop\input\)";
 	std::string filename;
-	std::cout << "Please enter the filename (including file extention): ";
+	std::cout << "Please enter the filename (including file extension): ";
 	std::cin >> filename;
 	filename = path + filename;
 	std::cout << std::endl;
