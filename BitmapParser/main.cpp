@@ -5,6 +5,7 @@
 #include <thread>
 #include <iostream>
 
+// #$pla$h Gang
 int main(int argc, _TCHAR* argv[])
 {
 
