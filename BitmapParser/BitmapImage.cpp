@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "BitmapImage.h"
 
-
+// #$pla$h Gang
 BitmapImage::BitmapImage()
 {
 	

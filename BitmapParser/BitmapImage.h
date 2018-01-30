@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+// #$pla$h Gang
 class BitmapImage
 {
 public:

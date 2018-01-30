@@ -3,6 +3,7 @@
 #include <string>
 #include "BitmapImage.h"
 
+// #$pla$h Gang
 class BitmapParser
 {
 public:
