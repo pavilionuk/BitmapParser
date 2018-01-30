@@ -1,0 +1,10 @@
+﻿  stdafx.cpp
+  BitmapImage.cpp
+  BitmapParser.cpp
+BitmapParser.cpp(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+BitmapParser.cpp(51): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  main.cpp
+  Generating code
+  All 345 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  BitmapParser.vcxproj -> C:\Users\pavilion.sahota\Desktop\git\bmp\bitmapparser\Release\BitmapParser.exe

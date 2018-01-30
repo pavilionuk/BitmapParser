@@ -20,37 +20,13 @@ int main(int argc, _TCHAR* argv[])
 	std::string filename;
 	std::cout << "Please enter the filename (including file extension): ";
 	std::cin >> filename;
-	if (filename == "easteregg")
-	{
-		while (true)
-		{
-			std::cout << "Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  " << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-			std::cout << "emes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  M" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-			std::cout << "mes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Me" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-			std::cout << "es  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Mem" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-			std::cout << "s  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Meme" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-			std::cout << "  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-			std::cout << " Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes  Memes " << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-		}
-	}
-	else
-	{
-		filename = path + filename;
-		std::cout << std::endl;
-		std::string filename2(R"(C:\Users\pavilion.sahota\Desktop\output\output.bmp)");
-		remove(filename2.c_str());
-		BitmapParser* parser = new BitmapParser(filename);
-		delete parser;
-		justForFun();
-
-	}
+	filename = path + filename;
+	std::cout << std::endl;
+	std::string filename2(R"(C:\Users\pavilion.sahota\Desktop\output\output.bmp)");
+	remove(filename2.c_str());
+	BitmapParser* parser = new BitmapParser(filename);
+	delete parser;
+  justForFun();
 	//Have the lambs stopped screaming Clarice?
 	return 0;
 }
