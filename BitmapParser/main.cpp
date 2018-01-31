@@ -20,7 +20,7 @@ int main(int argc, _TCHAR* argv[])
 	filename = path + filename;
 	std::cout << std::endl;
 	std::string filename2(R"(C:\Users\pavilion.sahota\Desktop\output\output.bmp)");
-	remove(filename2.c_str());
+	//remove(filename2.c_str());
 	BitmapParser* parser = new BitmapParser(filename);
 	delete parser;
 	int b = 10;
