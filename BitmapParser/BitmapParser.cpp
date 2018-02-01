@@ -147,7 +147,6 @@ void BitmapParser::create(const std::string& filename2)
 	bool RLE8 = false;
 	int pac2;
 
-	/*
 	std::string yesno;
 	if (int(bits) == 4)
 	{
@@ -177,10 +176,6 @@ void BitmapParser::create(const std::string& filename2)
 			RLE8 = false;
 		}
 	}
-	*/
-	RLE4 = false;
-	RLE8 = false;
-	pac2 = m_image->getPac();
 
 	ofs.write((char*)&bits, 2);
 	if (RLE4 == true)
