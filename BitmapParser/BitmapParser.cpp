@@ -310,9 +310,10 @@ void BitmapParser::create(const std::string& filename2)
 				if (i >= pixel8.size()-1) break;
 				if (pixel8.at(i) == pixel8.at(i + counter))
 				{
-					while (pixel8.at(i) == pixel8.at(i + counter))
+					while (pixel8.at(i) == pixel8.at(i + counter) && i<pixel8.size())
 					{
 						counter++;
+						if (counter >= 254) break;
 					}
 
 					ofs.write((char*)&counter, 1);
@@ -326,7 +327,7 @@ void BitmapParser::create(const std::string& filename2)
 				{
 					if (pixel8.at(i + counter2) != pixel8.at(i + (counter2 + 1)))
 					{
-						while (pixel8.at(i + counter2) != pixel8.at(i + (counter2 + 1)))
+						while (pixel8.at(i + counter2) != pixel8.at(i + (counter2 + 1)) && i<pixel8.size())
 						{
 							counter2++;
 						}
