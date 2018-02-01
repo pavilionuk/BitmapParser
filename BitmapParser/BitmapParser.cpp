@@ -305,7 +305,9 @@ void BitmapParser::create(const std::string& filename2)
 			std::vector<int> pixel8 = m_image->getPixel8();
 			for (size_t i = 0; i < pixel8.size(); i++)
 			{
-				progressBar((pixel8.size() + 1), i);
+				//std::cout << "Iterator: " << i << "/" << pixel8.size() << "     " << '\r';
+				if (i >= pixel8.size()) break;
+				if (i >= pixel8.size()-1) break;
 				if (pixel8.at(i) == pixel8.at(i + counter))
 				{
 					while (pixel8.at(i) == pixel8.at(i + counter))
@@ -318,6 +320,7 @@ void BitmapParser::create(const std::string& filename2)
 					ofs.write((char*)&buffer, 1);
 					i += counter;
 					counter = 1;
+					if (i >= pixel8.size()) break;
 				}
 				else
 				{
@@ -339,6 +342,7 @@ void BitmapParser::create(const std::string& filename2)
 					counter2 = 1;
 					if (i == pixel8.size()) break;
 				}
+				if (i >= pixel8.size()) break;
 				if (t == m_image->getWidth())
 				{
 					if (m_image->getPadding() == 1)
