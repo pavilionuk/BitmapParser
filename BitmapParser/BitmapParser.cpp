@@ -143,53 +143,7 @@ void BitmapParser::create(const std::string& filename2)
 	ofs.write((char*)&height, 4);
 	ofs.write((char*)&plane, 2);
 
-	bool RLE4 = false;
-	bool RLE8 = false;
-	int pac2;
-
-	std::string yesno;
-	if (int(bits) == 4)
-	{
-		std::cout << "Would you like to incorporate RLE4 compression Y/N? : ";
-		std::cin >> yesno;
-		if (yesno == "Y" || yesno == "y" || yesno == "yes" || yesno == "Yes" || yesno == "YES")
-		{
-			RLE4 = true;
-			pac2 = 2;
-		}
-		else
-		{
-			RLE4 = false;
-		}
-	}
-	else if (int(bits) == 8)
-	{
-		std::cout << "Would you like to incorporate RLE8 compression Y/N? : ";
-		std::cin >> yesno;
-		if (yesno == "Y" || yesno == "y" || yesno == "yes" || yesno == "Yes" || yesno == "YES")
-		{
-			RLE8 = true;
-			pac2 = 1;
-		}
-		else
-		{
-			RLE8 = false;
-		}
-	}
-
-	ofs.write((char*)&bits, 2);
-	if (RLE4 == true)
-	{
-		ofs.write((char*)&pac2, 4);
-	}
-	else if (RLE8 == true)
-	{
-		ofs.write((char*)&pac2, 4);
-	}
-	else
-	{
-		ofs.write((char*)&pac, 4);
-	}
+	ofs.write((char*)&pac, 4);
 	ofs.write((char*)&raw, 4);
 	ofs.write((char*)&resW, 4);
 	ofs.write((char*)&resH, 4);
@@ -219,7 +173,7 @@ void BitmapParser::create(const std::string& filename2)
 		std::vector<int> r = m_image->getR();
 		std::vector<int> a = m_image->getAlpha();
 
-		for (size_t i = 0; i < b.size(); i++)
+		for (long int i = 0; i < b.size(); i++)
 		{
 			progressBar((b.size() + 1), i);
 
@@ -247,7 +201,7 @@ void BitmapParser::create(const std::string& filename2)
 		std::vector<int> g = m_image->getG();
 		std::vector<int> r = m_image->getR();
 
-		for (size_t i = 0; i < b.size(); i++)
+		for (long int i = 0; i < b.size(); i++)
 		{
 			progressBar((b.size() + 1), i);
 
@@ -296,112 +250,13 @@ void BitmapParser::create(const std::string& filename2)
 	{
 		int t = 1;
 		std::vector<int> pixel8 = m_image->getPixel8();
-
-		if (RLE8 == true)
+		for (long int i = 0; i < pixel8.size(); i++)
 		{
-			int counter = 1;
-			int counter2 = 1;
-			int buffer = 0;
-			std::vector<int> pixel8 = m_image->getPixel8();
-			for (size_t i = 0; i < pixel8.size(); i++)
-			{
-				//std::cout << "Iterator: " << i << "/" << pixel8.size() << "     " << '\r';
-				if (i >= pixel8.size()) break;
-				if (i >= pixel8.size()-1) break;
-				if (pixel8.at(i) == pixel8.at(i + counter))
-				{
-					while (pixel8.at(i) == pixel8.at(i + counter) && i<pixel8.size())
-					{
-						counter++;
-						if (counter >= 254) break;
-					}
-
-					ofs.write((char*)&counter, 1);
-					buffer = pixel8.at(i);
-
-					ofs.write((char*)&buffer, 1);
-					i += counter;
-					counter = 1;
-					if (i >= pixel8.size()) break;
-				}
-				else
-				{
-					if (pixel8.at(i + counter2) != pixel8.at(i + (counter2 + 1)))
-					{
-						while (pixel8.at(i + counter2) != pixel8.at(i + (counter2 + 1)) && i<pixel8.size())
-						{
-							counter2++;
-							if (counter >= 254) break;
-							if ((i + counter2) >= (pixel8.size() - 1)) break;
-						}
-						buffer = 0;
-						ofs.write((char*)&buffer, 1);
-						ofs.write((char*)&counter2, 1);
-						for (int b = 0; b < counter2; b++)
-						{
-							ofs.write((char*)&pixel8.at(i + b), 1);
-						}
-						i += counter2;
-					}
-					counter2 = 1;
-					if (i == pixel8.size()) break;
-				}
-				if (i >= pixel8.size()) break;
-				/*
-				if (t == m_image->getWidth())
-				{
-					if (m_image->getPadding() == 1)
-					{
-						ofs.write((char*)&pad, 1);
-					}
-					else if (m_image->getPadding() == 2)
-					{
-						ofs.write((char*)&pad, 1);
-						ofs.write((char*)&pad, 1);
-					}
-					else if (m_image->getPadding() == 3)
-					{
-						ofs.write((char*)&pad, 1);
-						ofs.write((char*)&pad, 1);
-						ofs.write((char*)&pad, 1);
-					}
-					t = 0;
-				}
-				*/
-			}
+			progressBar((pixel8.size() + 1), i);
+			int pixel8char = pixel8.at(i);
+			ofs.write((char*)&pixel8char, 1);
 		}
-		else if (RLE8 == false)
-		{
-			std::vector<int> pixel8 = m_image->getPixel8();
-			for (size_t i = 0; i < pixel8.size(); i++)
-			{
-				progressBar((pixel8.size() + 1), i);
-				int pixel8char = pixel8.at(i);
-				ofs.write((char*)&pixel8char, 1);
-				/*
-				if (t == m_image->getWidth())
-				{
-					if (m_image->getPadding() == 1)
-					{
-						ofs.write((char*)&pad, 1);
-					}
-					else if (m_image->getPadding() == 2)
-					{
-						ofs.write((char*)&pad, 1);
-						ofs.write((char*)&pad, 1);
-					}
-					else if (m_image->getPadding() == 3)
-					{
-						ofs.write((char*)&pad, 1);
-						ofs.write((char*)&pad, 1);
-						ofs.write((char*)&pad, 1);
-					}
-					t = 0;
-				}
-				t++;
-				*/
-			}
-		}
+
 		ofs.close();
 		std::cout << "File re-creation completed!" << std::endl;
 		std::cout << std::endl;
@@ -460,61 +315,16 @@ void BitmapParser::create(const std::string& filename2)
 			}
 			t++;
 			*/
-		if (RLE4 == true)
-		{
-			int counter = 1;
-			int counter2 = 1;
-			int buffer = 0;
-			std::vector<int> pixel4 = m_image->getPixel4();
-			for (size_t i = 0; i < pixel4.size(); i++)
-			{
-				progressBar((pixel4.size() + 1), i);
-				if (pixel4.at(i) == pixel4.at(i + counter))
-				{
-					while (pixel4.at(i) == pixel4.at(i + counter))
-					{
-						counter++;
-					}
 
-					ofs.write((char*)&counter, 1);
-					buffer = pixel4.at(i);
-					ofs.write((char*)&buffer, 1);
-					i += counter;
-					counter = 1;
-				}
-				else
-				{
-					if (pixel4.at(i + counter2) != pixel4.at(i + (counter2 + 1)))
-					{
-						while (pixel4.at(i + counter2) != pixel4.at(i + (counter2 + 1)))
-						{
-							counter2++;
-						}
-						buffer = 0;
-						ofs.write((char*)&buffer, 1);
-						ofs.write((char*)&counter2, 1);
-						for (int b = 0; b < counter2; b++)
-						{
-							ofs.write((char*)&pixel4.at(i + b), 1);
-						}
-						i += counter2;
-					}
-					counter2 = 1;
-					if (i == pixel4.size()) break;
-				}
-			}
-		}
-		else
+		std::vector<int> pixel4 = m_image->getPixel4();
+		for (long int i = 0; i < pixel4.size(); i++)
 		{
-			std::vector<int> pixel4 = m_image->getPixel4();
-			for (size_t i = 0; i < pixel4.size(); i++)
-			{
-				progressBar((pixel4.size() + 1), i);
-				int buffer = pixel4.at(i);
-				if (i == pixel4.size()) break;
-				ofs.write((char*)&buffer, 1);
-			}
+			progressBar((pixel4.size() + 1), i);
+			int buffer = pixel4.at(i);
+			if (i == pixel4.size()) break;
+			ofs.write((char*)&buffer, 1);
 		}
+
 		/*
 		std::vector<int> pixel4 = m_image->getPixel4();
 		for (size_t i = 0; i < pixel4.size(); i++)
