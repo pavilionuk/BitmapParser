@@ -142,7 +142,7 @@ void BitmapParser::create(const std::string& filename2)
 	ofs.write((char*)&width, 4);
 	ofs.write((char*)&height, 4);
 	ofs.write((char*)&plane, 2);
-
+	ofs.write((char*)&bits, 2);
 	ofs.write((char*)&pac, 4);
 	ofs.write((char*)&raw, 4);
 	ofs.write((char*)&resW, 4);
