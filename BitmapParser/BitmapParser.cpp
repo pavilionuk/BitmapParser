@@ -318,6 +318,7 @@ void BitmapParser::create(const std::string& filename2)
 
 					ofs.write((char*)&counter, 1);
 					buffer = pixel8.at(i);
+
 					ofs.write((char*)&buffer, 1);
 					i += counter;
 					counter = 1;
@@ -330,6 +331,8 @@ void BitmapParser::create(const std::string& filename2)
 						while (pixel8.at(i + counter2) != pixel8.at(i + (counter2 + 1)) && i<pixel8.size())
 						{
 							counter2++;
+							if (counter >= 254) break;
+							if ((i + counter2) >= (pixel8.size() - 1)) break;
 						}
 						buffer = 0;
 						ofs.write((char*)&buffer, 1);
@@ -344,6 +347,7 @@ void BitmapParser::create(const std::string& filename2)
 					if (i == pixel8.size()) break;
 				}
 				if (i >= pixel8.size()) break;
+				/*
 				if (t == m_image->getWidth())
 				{
 					if (m_image->getPadding() == 1)
@@ -363,6 +367,7 @@ void BitmapParser::create(const std::string& filename2)
 					}
 					t = 0;
 				}
+				*/
 			}
 		}
 		else if (RLE8 == false)
@@ -373,6 +378,7 @@ void BitmapParser::create(const std::string& filename2)
 				progressBar((pixel8.size() + 1), i);
 				int pixel8char = pixel8.at(i);
 				ofs.write((char*)&pixel8char, 1);
+				/*
 				if (t == m_image->getWidth())
 				{
 					if (m_image->getPadding() == 1)
@@ -393,6 +399,7 @@ void BitmapParser::create(const std::string& filename2)
 					t = 0;
 				}
 				t++;
+				*/
 			}
 		}
 		ofs.close();
@@ -803,13 +810,14 @@ void BitmapParser::parsePixelArray(const std::string& filename)
 	}
 	case 8:
 	{
-		int padRemainder = (m_image->getWidth() % 4);
-		int padding = (4 - padRemainder);
-		if (padding == 4) padding = 0;
+		//int padRemainder = (m_image->getWidth() % 4);
+		//int padding = (4 - padRemainder);
+		//if (padding == 4) padding = 0;
 		int pixelBuffer;
 		while (!ifs.eof())
 		{
 			progressAnimation();
+			/*
 			if (padding > 0)
 			{
 				if (t == m_image->getWidth())
@@ -821,16 +829,17 @@ void BitmapParser::parsePixelArray(const std::string& filename)
 					}
 					t = 0;
 				}
-			}
+			}*/
 			ifs.read((char*)&pixelBuffer, 1);
+			//if(pixelBuffer==0) ifs.read((char*)&pixelBuffer, 1);
 			if (ifs.eof()) break;
 			m_image->addPixel8(pixelBuffer);
 			pixelBuffer = 0;
-			t++;
+			//t++;
 		}
 		std::cout << "Processing completed!                              " << std::endl;
 		std::cout << std::endl;
-		m_image->setPadding(padding);
+		//m_image->setPadding(padding);
 		break;
 	}
 	case 4:
